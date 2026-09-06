@@ -3,19 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>StepanOS — Степан Крылов</title>
+<title>AnastasOS — Анастас Григорян</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
-<meta name="description" content="Степан Крылов — Project Manager. Проекты в retail, fintech и IT. Личный сайт StepanOS.">
+<meta name="description" content="Анастас Григорян — Project Manager. Проекты в retail, fintech и IT. Личный сайт AnastasOS.">
 <meta name="theme-color" content="#1a1a1a">
-<link rel="canonical" href="https://stepankrylov.ru/">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://stepankrylov.ru/">
-<meta property="og:title" content="StepanOS — Степан Крылов">
-<meta property="og:description" content="Степан Крылов — Project Manager. Проекты в retail, fintech и IT. Личный сайт StepanOS.">
-<meta property="og:image" content="https://stepankrylov.ru/og-cover.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:title" content="AnastasOS — Анастас Григорян">
+<meta property="og:description" content="Анастас Григорян — Project Manager. Проекты в retail, fintech и IT. Личный сайт AnastasOS.">
 <meta property="og:locale" content="ru_RU">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,11 +19,10 @@
 <!-- Параллельная загрузка критичных ассетов — убирает задержку старта звука и фона -->
 <link rel="preload" as="audio" href="bg.mp3?v=30" type="audio/mpeg" fetchpriority="high">
 <!-- URL фонов должны совпадать с url() в CSS — иначе preload не засчитывается и картинка качается дважды -->
-<link rel="preload" as="image" href="bg.jpg?v=37">
-<link rel="preload" as="image" href="bg-mobile.jpg?v=35">
+<link rel="preload" as="image" href="scene-desktop.png?v=1">
+<link rel="preload" as="image" href="scene-mobile.png?v=1">
 <link rel="preload" as="video" href="boot-loader.mp4?v=30" type="video/mp4">
-<link rel="stylesheet" href="vendor/js-dos/js-dos.css?v=7.5.0">
-<link rel="stylesheet" href="style.css?v=40">
+<link rel="stylesheet" href="style.css?v=41">
 </head>
 <body>
 
@@ -50,8 +44,8 @@
   <!-- Титлбар фрейма (Win95 синий) — слева логотип+иконка, справа МСК+кнопки -->
   <div id="frame-titlebar">
     <div class="ft-left">
-      <div class="ft-icon">S</div>
-      <span class="ft-title">СтепанКрылов.exe</span>
+      <div class="ft-icon">A</div>
+      <span class="ft-title">АнастасГригорян.exe</span>
     </div>
     <div class="ft-right">
       <span class="ft-clock-wrap">
@@ -78,7 +72,7 @@
   <div id="monitor-win">
     <div class="mw-titlebar">
       <div class="mw-tb-left">
-        <div class="mw-tb-icon">S</div>
+        <div class="mw-tb-icon">A</div>
         <span class="mw-tb-title">Компуктер</span>
       </div>
       <div class="mw-tb-btns">
@@ -102,14 +96,14 @@
       <!-- ── HOME (desktop-style with icons) ── -->
       <section class="mw-section active home-desk" data-sec="home">
         <div class="home-head">
-          <h1 class="hero-name">СТЕПАН <br>КРЫЛОВ</h1>
+          <h1 class="hero-name">АНАСТАС <br>ГРИГОРЯН</h1>
           <div class="hero-role">/ Project Manager</div>
           <div class="hero-bio">Довожу проекты от исследования до концепции до готового решения. Сейчас строю <b>будущее</b>.</div>
         </div>
 
         <div class="home-icons">
           <div class="mw-icon" data-app="about" title="Обо мне">
-            <div class="mw-icon-img"><img src="icon_about.png" alt=""></div>
+            <div class="mw-icon-img"><img src="icon_about.png?v=2" alt=""></div>
             <div class="mw-icon-lbl">Обо мне</div>
           </div>
 
@@ -129,7 +123,7 @@
             <div class="mw-icon-lbl">Контакты</div>
           </div>
 
-          <div class="mw-icon" data-app="games" title="Игры (скоро)">
+          <div class="mw-icon" data-app="games" title="Игры">
             <div class="mw-icon-img"><img src="icon_games.png" alt=""></div>
             <div class="mw-icon-lbl">Игры</div>
           </div>
@@ -150,9 +144,9 @@
       <section class="mw-section" data-sec="about">
         <h2 class="sec-h">/ about /</h2>
         <div class="ab-top">
-          <div class="ab-ava"><img src="icon_about.png" alt="Степан Крылов — пиксельный портрет"></div>
+          <div class="ab-ava"><img src="icon_about.png?v=2" alt="Анастас Григорян — пиксельный портрет"></div>
           <div class="ab-head">
-            <div class="ab-name">Степан Крылов</div>
+            <div class="ab-name">Анастас Григорян</div>
             <div class="ab-role">Project Manager</div>
             <div class="ab-loc">Ярославль → Москва</div>
           </div>
@@ -191,7 +185,7 @@
           <div class="edu-sub">+ Skillbox (Продакт), РУДН, Нетология</div>
         </div>
         <div class="h-rule"></div>
-        <a class="ab-cta" href="https://t.me/krygerman" target="_blank" rel="noopener">
+        <a class="ab-cta" href="https://t.me/iamanastasgrigoryan" target="_blank" rel="noopener">
           <img class="cta-ico" src="icon_telegram.png" alt="">
           <span>написать в telegram</span><span class="cta-cursor">_</span>
         </a>
@@ -201,19 +195,19 @@
       <section class="mw-section" data-sec="contact">
         <h2 class="sec-h">/ contact /</h2>
         <div class="c-grid">
-          <a class="c-card" href="https://t.me/krygerman" target="_blank" rel="noopener">
+          <a class="c-card" href="https://t.me/iamanastasgrigoryan" target="_blank" rel="noopener">
             <div class="c-ico"><img src="icon_telegram.png" alt=""></div>
             <div class="c-body">
               <div class="c-lbl">telegram.exe</div>
-              <div class="c-val">@krygerman</div>
+              <div class="c-val">@iamanastasgrigoryan</div>
               <div class="c-hint">самый быстрый способ  →</div>
             </div>
           </a>
-          <a class="c-card" href="mailto:directstep@mail.ru">
+          <a class="c-card" href="mailto:sta5grigoryan@yandex.ru">
             <div class="c-ico">✉</div>
             <div class="c-body">
               <div class="c-lbl">mail.app</div>
-              <div class="c-val">directstep@mail.ru</div>
+              <div class="c-val">sta5grigoryan@yandex.ru</div>
               <div class="c-hint">для формальных писем</div>
             </div>
           </a>
@@ -221,7 +215,7 @@
 
         <!-- Фейковый терминал — строки «выводятся» по очереди при открытии вкладки (CSS-анимация) -->
         <div class="c-term" aria-hidden="true">
-          <div class="t-line t1">C:\&gt; ping @krygerman <span class="t-dim">... ok 12ms</span></div>
+          <div class="t-line t1">C:\&gt; ping @iamanastasgrigoryan <span class="t-dim">... ok 12ms</span></div>
           <div class="t-line t2">C:\&gt; status <span class="t-dim">... ● открыт к проектам</span></div>
           <div class="t-line t3">C:\&gt; <span class="t-cursor">_</span></div>
         </div>
@@ -253,7 +247,7 @@
   <div class="mm-frame">
     <div class="mm-titlebar">
       <div class="mm-tb-left">
-        <div class="mw-tb-icon">S</div>
+        <div class="mw-tb-icon">A</div>
         <span class="mm-tb-title" id="mm-title">Окно</span>
       </div>
       <div class="mw-tb-btns">
@@ -279,15 +273,6 @@
       <div class="mw-tb-btns"><button class="mw-tb-btn mw-tb-close" id="gm-close">×</button></div>
     </div>
     <div class="gm-body">
-      <div class="gm-game gm-doom-card">
-        <div class="gm-title">[ DOOM.exe ]</div>
-        <div class="doom-card-screen" aria-hidden="true">
-          <span class="doom-card-logo">DOOM</span>
-          <span class="doom-card-version">SHAREWARE v1.9</span>
-        </div>
-        <div class="gm-status">Episode 1 · Knee-Deep in the Dead</div>
-        <button class="gm-btn doom-launch" id="doom-launch" type="button">[ запустить DOOM ]</button>
-      </div>
       <div class="gm-game">
         <div class="gm-title">[ крестики-нолики ]</div>
         <div class="ttt-grid" id="ttt-grid">
@@ -315,29 +300,6 @@
           <button class="dpad" data-dir="down">▼</button>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════ DOOM / JS-DOS ═══════════════ -->
-<div id="doom-modal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="doom-window-title" aria-hidden="true">
-  <div class="doom-frame">
-    <div class="gm-titlebar doom-titlebar">
-      <div class="gm-tb-left">
-        <div class="mw-tb-icon">D</div>
-        <span id="doom-window-title">DOOM.exe — Shareware v1.9</span>
-      </div>
-      <div class="mw-tb-btns">
-        <button class="doom-exit-btn" id="doom-close" type="button" aria-label="Выйти из DOOM">[ выйти ]</button>
-      </div>
-    </div>
-    <div class="doom-stage">
-      <div id="doom-player"></div>
-      <div id="doom-loading" role="status">Загрузка DOOM...</div>
-    </div>
-    <div class="doom-help">
-      <span>ПК: стрелки — движение · Ctrl — огонь · Space — дверь · Shift — бег</span>
-      <span>Телефон: стрелки слева — движение · F — огонь · SP — дверь</span>
     </div>
   </div>
 </div>
@@ -377,12 +339,12 @@
      Появляется в точке клика мимо «компуктера», само исчезает через 4с. -->
 <div id="poke-win" class="hidden" role="status">
   <div class="pw-tb">
-    <span class="pw-title">StepanOS</span>
+    <span class="pw-title">AnastasOS</span>
     <button class="pw-close" aria-label="Закрыть">×</button>
   </div>
   <div class="pw-body" id="pw-text"></div>
 </div>
 
-<script src="app.js?v=36"></script>
+<script src="app.js?v=37"></script>
 </body>
 </html>

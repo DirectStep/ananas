@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════
-   STEPAN OS v5.2 — JS logic (full-viewport scene, overlay icons)
+   ANASTAS OS v5.2 — JS logic (full-viewport scene, overlay icons)
 ═══════════════════════════════════════════════════════════════════ */
 
 (() => {
@@ -342,7 +342,7 @@ function openApp(app, gotoTab) {
       if (isMobile()) openMobileModal(app);
       else gotoTab(app);
       break;
-    case 'telegram': window.open('https://t.me/krygerman', '_blank', 'noopener'); break;
+    case 'telegram': window.open('https://t.me/iamanastasgrigoryan', '_blank', 'noopener'); break;
     case 'games':    $('#games-modal')?.classList.remove('hidden'); break;
     case 'trash':    $('#trash-modal')?.classList.remove('hidden'); break;
   }
@@ -358,9 +358,9 @@ function openMobileModal(app) {
   if (!modal || !body || !title) return;
 
   const titles = {
-    about:    'О себе — СтепанКрылов.exe',
-    projects: 'Проекты — СтепанКрылов.exe',
-    contact:  'Контакты — СтепанКрылов.exe'
+    about:    'О себе — АнастасГригорян.exe',
+    projects: 'Проекты — АнастасГригорян.exe',
+    contact:  'Контакты — АнастасГригорян.exe'
   };
   title.textContent = titles[app] || 'Окно';
 
@@ -395,175 +395,15 @@ function closeMobileModal() {
   document.body.style.overflow = '';
 }
 
-/* ═══════════════ DOOM: локальный js-dos + shareware v1.9 ═══════════════ */
-let doomRuntimePromise;
-let doomPlayer;
-let doomLaunchTask;
-let doomSession = 0;
-let doomClosingPromise = Promise.resolve();
-let doomPreviousOverflow = '';
-let doomResumeBgAudio = false;
-
-function loadDoomRuntime() {
-  if (window.Dos && window.emulators) return Promise.resolve();
-  if (doomRuntimePromise) return doomRuntimePromise;
-
-  doomRuntimePromise = new Promise((resolve, reject) => {
-    const script = document.createElement('script');
-    script.src = 'vendor/js-dos/js-dos.js?v=7.5.0';
-    script.async = true;
-    script.dataset.doomRuntime = 'true';
-    script.onload = () => {
-      if (window.Dos && window.emulators) resolve();
-      else reject(new Error('js-dos runtime is unavailable'));
-    };
-    script.onerror = () => reject(new Error('js-dos runtime failed to load'));
-    document.head.appendChild(script);
-  }).catch((error) => {
-    doomRuntimePromise = undefined;
-    throw error;
-  });
-
-  return doomRuntimePromise;
-}
-
-function launchDoom() {
-  if (doomLaunchTask) {
-    // Если пользователь уже закрыл загружающийся Doom и сразу нажал снова,
-    // повторный запуск начнётся автоматически после полной уборки старого.
-    if ($('#doom-modal')?.classList.contains('hidden')) {
-      return doomLaunchTask.finally(() => launchDoom());
-    }
-    return doomLaunchTask;
-  }
-
-  const task = launchDoomImpl();
-  let trackedTask;
-  trackedTask = task.finally(() => {
-    if (doomLaunchTask === trackedTask) doomLaunchTask = undefined;
-  });
-  doomLaunchTask = trackedTask;
-  return trackedTask;
-}
-
-async function launchDoomImpl() {
-  const modal = $('#doom-modal');
-  const root = $('#doom-player');
-  const loading = $('#doom-loading');
-  if (!modal || !root || !loading) return;
-
-  // Не создаём новый canvas, пока старый worker и его DOM полностью не остановлены.
-  await doomClosingPromise;
-  if (doomPlayer || !modal.classList.contains('hidden')) return;
-
-  const session = ++doomSession;
-  let instance;
-  const bgAudio = $('#bg-audio');
-  bgAudioSuppressed = true;
-  clearAudioUnlock();
-  doomResumeBgAudio = Boolean(bgAudio && (!bgAudio.paused || audioStarted));
-  bgAudio?.pause();
-  doomPreviousOverflow = document.body.style.overflow;
-  document.body.style.overflow = 'hidden';
-  modal.classList.remove('hidden');
-  modal.setAttribute('aria-hidden', 'false');
-  $('#doom-close')?.focus();
-  loading.textContent = 'Загрузка DOOM...';
-  loading.classList.remove('hidden');
-
-  try {
-    await loadDoomRuntime();
-    if (session !== doomSession) return;
-
-    window.emulators.pathPrefix = 'vendor/js-dos/';
-    // js-dos по умолчанию показывает длинный onboarding поверх первого запуска.
-    // Для этой визитки управление уже подписано под окном, поэтому сразу открываем игру.
-    window.emulatorsUi.dom.storage.setItem('ui.tipsV2', 'false');
-    window.emulatorsUi.dom.storage.setItem('ui.autolockTipsV2', 'false');
-    instance = window.Dos(root, {
-      clickToStart: false,
-      scaleControls: 1,
-      noSideBar: true,
-      noSocialLinks: true,
-      withNetworkingApi: false,
-      preventUnload: false
-    });
-    doomPlayer = instance;
-    await instance.run('games/doom-shareware.jsdos?v=2');
-    if (isMobile()) await instance.enableMobileControls();
-
-    // При закрытии cleanup уже принадлежит closeDoom(); второй stop опасен для worker API.
-    if (session !== doomSession) return;
-    loading.classList.add('hidden');
-  } catch (error) {
-    // Старый запуск мог завершиться уже после закрытия/нового запроса.
-    // В таком случае он не имеет права трогать актуальный player и интерфейс.
-    if (session !== doomSession) return;
-    console.error('DOOM launch failed:', error);
-    if (doomPlayer === instance) doomPlayer = undefined;
-    if (instance) {
-      try { await instance.stop(); }
-      catch (stopError) { console.warn('Failed DOOM cleanup:', stopError); }
-    }
-    root.replaceChildren();
-    loading.textContent = 'Не удалось запустить DOOM. Закрой окно и попробуй ещё раз.';
-  }
-}
-
-function closeDoom() {
-  const modal = $('#doom-modal');
-  const root = $('#doom-player');
-  if (modal?.classList.contains('hidden') && !doomPlayer) return doomClosingPromise;
-
-  const instance = doomPlayer;
-  const activeLaunchTask = doomLaunchTask;
-  const closingSession = ++doomSession;
-  const shouldResumeBgAudio = doomResumeBgAudio;
-  doomPlayer = undefined;
-  doomResumeBgAudio = false;
-
-  modal?.classList.add('hidden');
-  modal?.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = doomPreviousOverflow;
-  $('#doom-launch')?.focus();
-
-  doomClosingPromise = doomClosingPromise.catch(() => {}).then(async () => {
-    if (instance) {
-      try { await instance.stop(); }
-      catch (error) { console.warn('DOOM stop failed:', error); }
-    }
-    if (activeLaunchTask) {
-      try { await activeLaunchTask; }
-      catch {}
-    }
-    if (closingSession !== doomSession) return;
-    if (root) root.replaceChildren();
-    bgAudioSuppressed = false;
-    if (shouldResumeBgAudio) {
-      tryPlayBgAudio(true);
-    } else if (!audioStarted) {
-      armAudioUnlock();
-    }
-  });
-
-  return doomClosingPromise;
-}
-
 /* ═══════════════ MODALS ═══════════════ */
 function modals() {
   on($('#gm-close'), 'click', () => $('#games-modal')?.classList.add('hidden'));
-  on($('#doom-launch'), 'click', () => launchDoom());
-  on($('#doom-close'), 'click', () => closeDoom());
   on($('#tm-close'), 'click', () => $('#trash-modal')?.classList.add('hidden'));
   on($('#mm-close'), 'click', () => closeMobileModal());
 
   // ESC closes everything
   on(document, 'keydown', (e) => {
     if (e.key === 'Escape') {
-      if (!$('#doom-modal')?.classList.contains('hidden')) {
-        closeDoom();
-        return;
-      }
       $('#games-modal')?.classList.add('hidden');
       $('#trash-modal')?.classList.add('hidden');
       closeMobileModal();
@@ -571,7 +411,6 @@ function modals() {
   });
   // Backdrop click closes
   on($('#games-modal'), 'click', (e) => { if (e.target.id === 'games-modal') e.target.classList.add('hidden'); });
-  on($('#doom-modal'), 'click', (e) => { if (e.target.id === 'doom-modal') closeDoom(); });
   on($('#trash-modal'), 'click', (e) => { if (e.target.id === 'trash-modal') e.target.classList.add('hidden'); });
   on($('#mobile-modal'), 'click', (e) => { if (e.target.id === 'mobile-modal') closeMobileModal(); });
 }
@@ -612,7 +451,7 @@ function pokeWindow() {
   on(document, 'click', (e) => {
     // composedPath сохраняет исходных родителей даже когда клик перерисовал папку до всплытия события.
     const blockedClick = e.composedPath().some(node => node instanceof Element && node.matches(
-      '#monitor-win, .mw-icon, #mobile-modal, #games-modal, #doom-modal, #trash-modal, #poke-win, #frame-titlebar, #rotate-overlay, #boot'
+      '#monitor-win, .mw-icon, #mobile-modal, #games-modal, #trash-modal, #poke-win, #frame-titlebar, #rotate-overlay, #boot'
     ));
     if (blockedClick) return;
 
