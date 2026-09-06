@@ -11,7 +11,7 @@ const $$ = (s, r=document) => [...r.querySelectorAll(s)];
 const on = (el, ev, fn) => el && el.addEventListener(ev, fn);
 const pad = (n) => String(n).padStart(2, '0');
 
-const PORTFOLIO_URL = 'https://disk.yandex.ru/d/CUsa3mXcSa4nTg';
+const PORTFOLIO_URL = 'https://disk.yandex.ru/d/a5b5fRScc-LjVA';
 const project = (id, name, kicker, description, tags) => ({ id, name, kicker, description, tags, type: 'project' });
 const folder = (id, name, description, children) => ({ id, name, description, children, type: 'folder' });
 
