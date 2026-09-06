@@ -540,6 +540,12 @@ body { background: #0a0a0a; }   /* тёмные поля снаружи окна
   border-radius: 2px;
   transition: background .08s;
 }
+@media (hover: hover) {
+  .mw-icon:hover {
+    background: rgba(255, 255, 255, .18);
+    border-color: rgba(255, 255, 255, .65);
+  }
+}
 .mw-icon.active {
   background: rgba(0, 0, 128, 0.55);
   border: 1px dotted rgba(255, 255, 0, 0.9);
