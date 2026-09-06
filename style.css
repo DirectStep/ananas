@@ -540,7 +540,6 @@ body { background: #0a0a0a; }   /* тёмные поля снаружи окна
   border-radius: 2px;
   transition: background .08s;
 }
-.mw-icon:hover { background: rgba(255, 255, 255, 0.12); border-color: rgba(255,255,255,.3); }
 .mw-icon.active {
   background: rgba(0, 0, 128, 0.55);
   border: 1px dotted rgba(255, 255, 0, 0.9);
@@ -585,45 +584,6 @@ body { background: #0a0a0a; }   /* тёмные поля снаружи окна
 /* Ярлык «Контакты» — только мобилка: на десктопе contact доступен табом,
    а 6-я иконка увела бы «Игры» во второй подрезанный ряд */
 .mw-icon[data-app="contact"] { display: none; }
-
-/* Пиксельная «дезинтеграция» при наведении: вокруг иконки искрят квадратики.
-   Два слоя ::before/::after мигают в противофазе (steps — без плавности, по-пиксельному).
-   Только для устройств с курсором — на таче :hover залипает после тапа. */
-@media (hover: hover) {
-  .mw-icon-img { position: relative; }
-  .mw-icon-img::before,
-  .mw-icon-img::after {
-    content: '';
-    position: absolute;
-    left: 50%; top: 50%;
-    width: 4px; height: 4px;
-    opacity: 0;
-    pointer-events: none;
-  }
-  .mw-icon-img::before {
-    box-shadow:
-      -38px -22px 0 #fff,
-       34px -30px 0 #ffe560,
-      -30px  26px 0 #ffe560,
-       38px  18px 0 #fff,
-      -20px -36px 0 rgba(255,255,255,.55);
-  }
-  .mw-icon-img::after {
-    box-shadow:
-      -46px  -8px 0 #ffe560,
-       44px -14px 0 #fff,
-      -40px  12px 0 rgba(255,229,96,.7),
-       46px   6px 0 #ffe560,
-        8px -44px 0 #fff,
-       -6px  42px 0 rgba(255,255,255,.6);
-  }
-  .mw-icon:hover .mw-icon-img::before { opacity: 1; animation: px-flicker .45s steps(2) infinite; }
-  .mw-icon:hover .mw-icon-img::after  { opacity: 1; animation: px-flicker .45s steps(2) infinite .22s; }
-}
-@keyframes px-flicker {
-  0%, 100% { transform: translate(-50%, -50%); opacity: 1; }
-  50%      { transform: translate(calc(-50% + 2px), calc(-50% - 2px)); opacity: .5; }
-}
 
 /* Section shared */
 .h-rule {
