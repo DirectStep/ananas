@@ -545,6 +545,10 @@ body { background: #0a0a0a; }   /* тёмные поля снаружи окна
   background: rgba(0, 0, 128, 0.55);
   border: 1px dotted rgba(255, 255, 0, 0.9);
 }
+.mw-icon[data-app="about"] .mw-icon-img img {
+  transform: scale(1.2);
+}
+
 .mw-icon-img {
   width: calc(68 * var(--u)); height: calc(68 * var(--u));
   display: flex; align-items: center; justify-content: center;
