@@ -451,7 +451,7 @@ body { background: #0a0a0a; }   /* тёмные поля снаружи окна
   background-color: #1a1a2a;
   background-image:
     linear-gradient(rgba(0,0,20,.22), rgba(0,0,20,.38)),
-    url('wallpaper.jpg');
+    url('wallpaper-mountains.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1347,7 +1347,7 @@ a, button, .mw-icon, .ttt-cell { cursor: url('cursor-hand.png') 12 0, pointer; }
     overflow: hidden;
   }
 
-  /* Home-секция на мобилке: обои Windows XP + лёгкое затемнение для читаемости текста */
+  /* Пиксельные горы с затемнением для читаемости текста и иконок. */
   .mw-section.home-desk {
     display: flex !important;
     flex-direction: column;
@@ -1357,7 +1357,7 @@ a, button, .mw-icon, .ttt-cell { cursor: url('cursor-hand.png') 12 0, pointer; }
     animation: none;
     background-image:
       linear-gradient(rgba(0,0,20,.30), rgba(0,0,20,.45)),
-      url('wallpaper.jpg');
+      url('wallpaper-mountains.png');
     background-size: cover;
     background-position: center;
     background-color: #2c5a8b;
